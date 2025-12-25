@@ -1,0 +1,58 @@
+{
+  "_description": "Configuration for Batch RNA Design Pipeline",
+  "_source": "Extracted from examples/use_case_4_batch_design_pipeline_fixed.py",
+
+  "design": {
+    "n_designs_per_target": 100,
+    "total_samples": 1000,
+    "batch_size": 32
+  },
+
+  "processing": {
+    "max_workers": null,
+    "parallel_processing": true,
+    "timeout_per_target": 1800
+  },
+
+  "evaluation": {
+    "enabled": true,
+    "metrics": ["openknot_score", "sc_score_ribonanzanet", "sc_score_ribonanzanet_ss"],
+    "include_basic_stats": true
+  },
+
+  "filtering": {
+    "enabled": true,
+    "min_score_threshold": 0.1,
+    "max_results_per_target": 10,
+    "gc_content_range": [0.2, 0.8],
+    "length_tolerance_std": 2
+  },
+
+  "output": {
+    "save_intermediate": true,
+    "format": "csv",
+    "include_metadata": true,
+    "create_summary": true
+  },
+
+  "pipeline_phases": {
+    "design_generation": {
+      "required": true,
+      "description": "Generate RNA sequences for each target"
+    },
+    "evaluation": {
+      "required": false,
+      "description": "Evaluate sequences using computational metrics"
+    },
+    "filtering_ranking": {
+      "required": false,
+      "description": "Filter and rank designs by quality scores"
+    }
+  },
+
+  "target_validation": {
+    "required_fields": ["name"],
+    "auto_correct_mode": true,
+    "skip_invalid": true
+  }
+}

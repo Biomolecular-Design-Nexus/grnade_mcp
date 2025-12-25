@@ -1,0 +1,93 @@
+# Default RNA Design Configuration for gRNAde MCP
+# Based on the original design.yaml from gRNAde
+
+##################################
+# Target Structure Configuration
+##################################
+
+# Path to target 3D structure (PDB format)
+# Will be provided via MCP tool parameters
+pdb_filepath: null
+
+# Target secondary structure in dot-bracket notation
+# Pseudoknots are supported using additional bracket types: [], {}, <>
+# Will be provided via MCP tool parameters
+target_sec_struct: null
+
+# Partial sequence constraints (hard constraints) - optional
+# Use '_' for designable positions and 'A', 'G', 'C', 'U' for fixed positions
+partial_seq: null
+
+##################################
+# Design Mode Configuration
+##################################
+
+# Design mode: '3d' (condition on 3D structure) or '2d' (condition on 2D structure only)
+mode: "3d"
+
+##################################
+# Sampling Configuration
+##################################
+
+# Total number of sequences to generate (default for quick operations)
+total_samples: 1000
+
+# Number of sequences to sample per batch
+n_samples: 32
+
+# Number of designs that pass filtering threshold
+n_pass: 100
+
+# Minimum sampling temperature (lower = more conservative)
+temperature_min: 0.1
+
+# Maximum sampling temperature (higher = more diverse)
+temperature_max: 1.0
+
+# Filtering metric for initial design selection
+filter_metric: "openknot_score"
+
+# Threshold for filtering designs
+pass_threshold: 80
+
+##################################
+# Output Configuration
+##################################
+
+# Output directory (will be set by MCP)
+output_dir: "results"
+
+##################################
+# Model Configuration
+##################################
+
+# Path to gRNAde checkpoint (relative to repo directory)
+model_path: "checkpoints/gRNAde_drop3d@0.75_maxlen@500.h5"
+
+# Model architecture parameters
+node_in_dim: [15, 4]
+node_h_dim: [128, 16]
+edge_in_dim: [132, 3]
+edge_h_dim: [64, 4]
+num_layers: 4
+drop_rate: 0.5
+out_dim: 4
+
+##################################
+# Featurizer Configuration
+##################################
+
+radius: 0.0
+top_k: 32
+num_rbf: 32
+num_posenc: 32
+max_num_conformers: 1
+noise_scale: 0.1
+drop_prob_3d: 0.75
+
+##################################
+# System Configuration
+##################################
+
+seed: 42
+gpu: 0

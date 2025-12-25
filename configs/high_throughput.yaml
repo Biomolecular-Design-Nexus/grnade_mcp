@@ -1,0 +1,83 @@
+# High-Throughput RNA Design Configuration
+# For generating large numbers of designs with batch processing
+
+##################################
+# Target Structure Configuration
+##################################
+
+pdb_filepath: null
+target_sec_struct: null
+partial_seq: null
+
+##################################
+# Design Mode Configuration
+##################################
+
+mode: "3d"
+
+##################################
+# High-Throughput Sampling Configuration
+##################################
+
+# Large-scale generation parameters
+total_samples: 100000
+n_samples: 128
+n_pass: 10000
+
+# Wider temperature range for diversity
+temperature_min: 0.05
+temperature_max: 1.5
+
+# More permissive initial filtering for larger pools
+filter_metric: "openknot_score"
+pass_threshold: 70
+
+##################################
+# Batch Processing Configuration
+##################################
+
+# Enable parallel processing
+parallel_jobs: 4
+batch_size: 1000
+checkpoint_interval: 10000
+
+##################################
+# Output Configuration
+##################################
+
+output_dir: "results"
+save_intermediate: true
+compress_output: true
+
+##################################
+# Model Configuration
+##################################
+
+model_path: "checkpoints/gRNAde_drop3d@0.75_maxlen@500.h5"
+node_in_dim: [15, 4]
+node_h_dim: [128, 16]
+edge_in_dim: [132, 3]
+edge_h_dim: [64, 4]
+num_layers: 4
+drop_rate: 0.5
+out_dim: 4
+
+##################################
+# Featurizer Configuration
+##################################
+
+radius: 0.0
+top_k: 32
+num_rbf: 32
+num_posenc: 32
+max_num_conformers: 1
+noise_scale: 0.1
+drop_prob_3d: 0.75
+
+##################################
+# System Configuration
+##################################
+
+seed: 42
+gpu: 0
+memory_limit: "16GB"

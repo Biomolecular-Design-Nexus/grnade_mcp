@@ -1,0 +1,35 @@
+{
+  "_description": "Configuration for RNA Structure Analysis",
+  "_source": "Extracted from examples/use_case_3_structure_analysis_minimal.py",
+
+  "analysis": {
+    "include_pseudoknots": true,
+    "validate_structure": true,
+    "include_statistics": true,
+    "include_stems": true,
+    "include_loops": true
+  },
+
+  "prediction": {
+    "method": "simple_heuristic",
+    "note": "For real predictions, integrate ViennaRNA RNAfold or EternaFold"
+  },
+
+  "validation": {
+    "allowed_brackets": ["()", "[]", "{}", "<>"],
+    "allow_pseudoknots": true,
+    "strict_pairing": false
+  },
+
+  "output": {
+    "format": "json",
+    "include_metadata": true,
+    "include_summary": true,
+    "verbose": true
+  },
+
+  "processing": {
+    "min_stem_length": 2,
+    "min_loop_length": 3
+  }
+}

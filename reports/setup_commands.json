@@ -1,0 +1,9 @@
+{
+  "setup_commands": [
+    "(command -v mamba >/dev/null 2>&1 && mamba env create -p ./env python=3.10 -y) || (command -v conda >/dev/null 2>&1 && conda env create -p ./env python=3.10 -y) || (echo \"Warning: Neither mamba nor conda found, creating venv instead\" && python3 -m venv ./env)",
+    "./env/bin/pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0",
+    "./env/bin/pip install torch-geometric torch-scatter torch-sparse torch-cluster",
+    "./env/bin/pip install -r requirements.txt",
+    "./env/bin/pip install --ignore-installed fastmcp"
+  ]
+}

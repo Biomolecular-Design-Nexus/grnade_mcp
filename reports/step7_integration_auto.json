@@ -1,0 +1,95 @@
+{
+  "test_date": "2025-12-24T20:37:43.144024",
+  "server_name": "geometric-rna-design",
+  "environment": {
+    "python_version": "3.12.12",
+    "claude_cli_available": true,
+    "current_directory": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/grnade_mcp",
+    "test_runner_path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/grnade_mcp/tests/run_integration_tests.py"
+  },
+  "tests": {
+    "server_startup": {
+      "status": "passed",
+      "details": {
+        "syntax_check": true,
+        "import_check": true,
+        "tools_accessible": true
+      },
+      "outputs": {
+        "syntax": {
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "success": true
+        },
+        "import": {
+          "returncode": 0,
+          "stdout": "Import successful",
+          "stderr": "",
+          "success": true
+        },
+        "tools": {
+          "returncode": 0,
+          "stdout": "Tools found",
+          "stderr": "",
+          "success": true
+        }
+      }
+    },
+    "claude_registration": {
+      "status": "passed",
+      "details": {
+        "server_found": true,
+        "server_connected": true,
+        "full_output": "Checking MCP server health...\n\nlinearfold_mcp: python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/linearfold_mcp/src/linearfold_mcp.py - \u2717 Failed to connect\nevo2: /home/xux/miniforge3/envs/nucleic-mcp/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/evo2_mcp/src/server.py - \u2713 Connected\nDNABERT: /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/dnabert_mcp/env/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/dnabert_mcp/src/server.py - \u2713 Connected\nDNABERT_2: /home/xux/miniforge3/envs/nucleic-mcp/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/dnabert2_mcp/src/server.py - \u2713 Connected\nnucleotide-transformer: /home/xux/miniforge3/envs/nucleic-mcp/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/nucleotide_transformer_mcp/src/server.py - \u2713 Connected\nRNA-FM: /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rnafm_mcp/env/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rnafm_mcp/src/server.py - \u2713 Connected\nRiNALMo: /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rinalmo_mcp/env/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rinalmo_mcp/src/server.py - \u2713 Connected\nLinearDesign: /home/xux/miniforge3/envs/nucleic-mcp/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/lineardesign_mcp/src/server.py - \u2713 Connected\nViennaRNA: /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/viennarna_mcp/env/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/viennarna_mcp/src/server.py - \u2713 Connected\nRhoFold: /home/xux/miniforge3/envs/nucleic-mcp/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhofold_mcp/src/server.py - \u2713 Connected\nDRfold2: /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/drfold2_mcp/env/bin/python3.11 /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/drfold2_mcp/src/server.py - \u2713 Connected\nSHAPEwarp: /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/shapewarp_mcp/env/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/shapewarp_mcp/src/server.py - \u2713 Connected\nrnamotif: /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rnamotif_mcp/env/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rnamotif_mcp/src/server.py - \u2713 Connected\nFOREST2020: /home/xux/miniforge3/envs/nucleic-mcp/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/forest_mcp/src/server.py - \u2713 Connected\nRhoDesign: /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/env/bin/python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/src/server.py - \u2713 Connected\ngeometric-rna-design: python /home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/grnade_mcp/src/server.py - \u2713 Connected"
+      }
+    },
+    "example_data": {
+      "status": "passed",
+      "files_checked": 4,
+      "files_found": 4,
+      "details": {
+        "examples/data/structures/8t2p_A.pdb": {
+          "exists": true,
+          "size": 368631
+        },
+        "examples/data/sequences/sample_designs.csv": {
+          "exists": true,
+          "size": 19680
+        },
+        "examples/data/configs/design.yaml": {
+          "exists": true,
+          "size": 4268
+        },
+        "examples/data/structures/RFdiff_0.pdb": {
+          "exists": true,
+          "size": 210417
+        }
+      }
+    },
+    "job_directory": {
+      "status": "passed",
+      "details": {
+        "exists": true,
+        "is_directory": true,
+        "writable": 128,
+        "path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/grnade_mcp/jobs"
+      }
+    },
+    "python_tools": {
+      "status": "passed",
+      "output": "SUCCESS: Server imported successfully\nServer type: <class 'fastmcp.server.server.FastMCP'>",
+      "error": null
+    }
+  },
+  "issues": [],
+  "summary": {
+    "total_tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "pass_rate": "100.0%",
+    "test_duration_seconds": 21.653832,
+    "issues_found": 0,
+    "ready_for_production": true
+  }
+}

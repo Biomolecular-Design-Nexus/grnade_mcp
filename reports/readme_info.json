@@ -1,0 +1,212 @@
+{
+  "project_name": "grnade-mcp",
+  "full_name": "gRNAde MCP (Geometric RNA Design)",
+  "description": "Model Context Protocol server for generative inverse design of RNA structure and function with gRNAde",
+  "version": "1.0.0-dev",
+  "status": "in_development",
+  "tools": [
+    {
+      "name": "design_rna_sequences",
+      "type": "sync",
+      "description": "Generate RNA sequences from 3D structure using gRNAde",
+      "example_prompt": "Design 100 RNA sequences for @examples/data/riboswitch.pdb with target secondary structure",
+      "max_limit": "1000 designs",
+      "runtime": "< 10 minutes"
+    },
+    {
+      "name": "filter_rna_designs",
+      "type": "sync",
+      "description": "Filter and rank RNA designs based on quality metrics",
+      "example_prompt": "Filter designs in @results/designs.fasta using openknot score > 80",
+      "parameters": ["designs_file", "filter_metric", "threshold"]
+    },
+    {
+      "name": "evaluate_rna_designs",
+      "type": "sync",
+      "description": "Evaluate RNA designs using computational tools like RibonanzaNet",
+      "example_prompt": "Evaluate RNA designs in @results/designs.fasta using RibonanzaNet",
+      "methods": ["ribonanzanet", "rhofold", "viennarna"]
+    },
+    {
+      "name": "submit_rna_design_campaign",
+      "type": "submit",
+      "description": "Large-scale design generation for background processing",
+      "example_prompt": "Submit design campaign for @examples/data/structure.pdb generating 10,000 designs",
+      "runtime": "> 10 minutes"
+    },
+    {
+      "name": "submit_batch_rna_design",
+      "type": "submit",
+      "description": "Process multiple structures in parallel",
+      "example_prompt": "Submit batch design for all PDB files in @examples/data/structures/",
+      "runtime": "> 10 minutes"
+    },
+    {
+      "name": "validate_rna_structure",
+      "type": "sync",
+      "description": "Validate PDB structure file format and content",
+      "example_prompt": "Validate structure file @examples/data/sample.pdb",
+      "runtime": "< 1 minute"
+    },
+    {
+      "name": "get_job_status",
+      "type": "management",
+      "description": "Check job progress",
+      "parameters": ["job_id"]
+    },
+    {
+      "name": "get_job_result",
+      "type": "management",
+      "description": "Get results when completed",
+      "parameters": ["job_id"]
+    },
+    {
+      "name": "get_job_log",
+      "type": "management",
+      "description": "View execution logs",
+      "parameters": ["job_id", "tail"]
+    },
+    {
+      "name": "cancel_job",
+      "type": "management",
+      "description": "Cancel running job",
+      "parameters": ["job_id"]
+    },
+    {
+      "name": "list_jobs",
+      "type": "management",
+      "description": "List all jobs",
+      "parameters": ["status"]
+    },
+    {
+      "name": "get_example_data",
+      "type": "utility",
+      "description": "Get information about available example datasets",
+      "example_prompt": "What example data is available for testing?"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "design_rna.py",
+      "description": "Generate RNA sequences from 3D structures",
+      "example_command": "python scripts/design_rna.py --pdb examples/data/riboswitch.pdb --output results/ --n-designs 1000",
+      "parameters": ["--pdb", "--target-structure", "--n-designs", "--mode", "--output"],
+      "status": "placeholder_implemented"
+    },
+    {
+      "name": "filter_designs.py",
+      "description": "Filter and rank generated designs",
+      "example_command": "python scripts/filter_designs.py --input results/designs.fasta --filter-metric openknot_score --threshold 80",
+      "parameters": ["--input", "--output", "--filter-metric", "--threshold"],
+      "status": "placeholder_implemented"
+    },
+    {
+      "name": "evaluate_designs.py",
+      "description": "Evaluate designs with computational tools",
+      "example_command": "python scripts/evaluate_designs.py --input results/designs.fasta --method ribonanzanet",
+      "parameters": ["--input", "--output", "--method", "--reference-structure"],
+      "status": "placeholder_implemented"
+    }
+  ],
+  "demo_data": [
+    {
+      "file": "riboswitch.pdb",
+      "description": "ZMP riboswitch structure for testing RNA design",
+      "size": "~70 nucleotides",
+      "used_by": ["design_rna_sequences", "design_rna.py"],
+      "status": "planned"
+    },
+    {
+      "file": "aptamer.pdb",
+      "description": "Small aptamer structure for quick testing",
+      "size": "~30 nucleotides",
+      "used_by": ["design_rna_sequences", "validate_rna_structure"],
+      "status": "planned"
+    },
+    {
+      "file": "ribozyme.pdb",
+      "description": "RNA polymerase ribozyme for functional design",
+      "size": "~100+ nucleotides",
+      "used_by": ["submit_rna_design_campaign"],
+      "status": "planned"
+    }
+  ],
+  "configs": [
+    {
+      "file": "default_design.yaml",
+      "description": "Default RNA design parameters",
+      "parameters": {
+        "mode": "3d",
+        "total_samples": 1000,
+        "filter_metric": "openknot_score",
+        "pass_threshold": 80,
+        "temperature_range": [0.1, 1.0]
+      },
+      "status": "implemented"
+    },
+    {
+      "file": "high_throughput.yaml",
+      "description": "High-throughput design configuration",
+      "parameters": {
+        "mode": "3d",
+        "total_samples": 100000,
+        "parallel_jobs": 4,
+        "batch_size": 1000,
+        "pass_threshold": 70
+      },
+      "status": "implemented"
+    }
+  ],
+  "features": [
+    "3D RNA Design from PDB structures",
+    "Expert-Level Accuracy on Pseudoknots",
+    "Functional Design Campaigns",
+    "High-Throughput Pipeline with Screening",
+    "Batch Processing Support",
+    "Multiple Evaluation Metrics",
+    "Job Management for Long-Running Tasks"
+  ],
+  "dependencies": {
+    "python_version": "3.10+",
+    "pytorch": "2.1.0",
+    "pytorch_geometric": "latest",
+    "mcp": "fastmcp>=0.2.0",
+    "bioinformatics": ["biopython", "biotite", "mdanalysis"],
+    "scientific": ["numpy", "pandas", "scipy", "matplotlib"],
+    "utilities": ["pyyaml", "tqdm", "wandb", "python-dotenv"]
+  },
+  "installation": {
+    "environment": "conda/mamba environment with Python 3.10",
+    "gpu_support": "CUDA 11.8/12.1 recommended",
+    "memory_requirements": "8GB RAM minimum, 16GB+ recommended",
+    "storage": "Model checkpoints ~2GB from HuggingFace"
+  },
+  "original_project": {
+    "name": "geometric-rna-design",
+    "url": "https://github.com/chaitjo/geometric-rna-design",
+    "paper": "Generative inverse design of RNA structure and function with gRNAde",
+    "license": "MIT",
+    "authors": "Chaitanya K. Joshi et al."
+  },
+  "development_status": {
+    "phase": "Phase 1 - Foundation Setup",
+    "completed": [
+      "Repository structure created",
+      "README documentation",
+      "Configuration files",
+      "MCP server skeleton",
+      "Script placeholders"
+    ],
+    "in_progress": [
+      "MCP tool implementations",
+      "Script functionality",
+      "Example data preparation"
+    ],
+    "planned": [
+      "RibonanzaNet integration",
+      "RhoFold integration",
+      "Batch processing system",
+      "Job management system"
+    ]
+  }
+}

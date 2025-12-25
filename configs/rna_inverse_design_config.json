@@ -1,0 +1,43 @@
+{
+  "_description": "Configuration for RNA Inverse Design using gRNAde",
+  "_source": "Extracted from examples/use_case_1_rna_inverse_design_fixed.py",
+
+  "model": {
+    "checkpoint": "gRNAde_drop3d@0.75_maxlen@500.h5",
+    "device": "cpu",
+    "num_layers": 20,
+    "model_type": "2d"
+  },
+
+  "generation": {
+    "total_samples": 1000,
+    "n_samples": 32,
+    "n_pass": 100,
+    "temperature_min": 0.1,
+    "temperature_max": 1.0,
+    "pass_threshold": 80
+  },
+
+  "reproducibility": {
+    "seed": 42
+  },
+
+  "output": {
+    "format": "csv",
+    "include_metadata": true,
+    "timestamp_files": true
+  },
+
+  "modes": {
+    "2d": {
+      "description": "Design based on secondary structure constraints",
+      "required_inputs": ["secondary_structure"],
+      "optional_inputs": ["partial_seq"]
+    },
+    "3d": {
+      "description": "Design based on 3D structural constraints",
+      "required_inputs": ["pdb_file"],
+      "optional_inputs": ["secondary_structure", "partial_seq"]
+    }
+  }
+}

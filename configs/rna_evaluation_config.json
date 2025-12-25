@@ -1,0 +1,34 @@
+{
+  "_description": "Configuration for RNA Evaluation using computational metrics",
+  "_source": "Extracted from examples/use_case_2_rna_evaluation_fixed.py",
+
+  "models": {
+    "ribonanza_model": "ribonanzanet.pt",
+    "ribonanza_ss_model": "ribonanzanet_ss.pt",
+    "device": "auto"
+  },
+
+  "processing": {
+    "batch_size": 32,
+    "verbose": true
+  },
+
+  "evaluation_metrics": {
+    "include_basic_stats": true,
+    "include_openknot_score": true,
+    "include_self_consistency": true,
+    "include_gc_content": true,
+    "include_nucleotide_counts": true
+  },
+
+  "output": {
+    "format": "csv",
+    "include_summary": true,
+    "include_metadata": true
+  },
+
+  "fallback": {
+    "basic_stats_only": true,
+    "description": "Use basic statistics if advanced models fail to load"
+  }
+}

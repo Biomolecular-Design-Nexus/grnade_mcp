@@ -1,0 +1,46 @@
+# Core dependencies for gRNAde MCP
+fastmcp>=0.2.0
+loguru
+
+# gRNAde core dependencies
+torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
+torch-geometric
+torch-scatter
+torch-sparse
+torch-cluster
+
+# Scientific computing and ML
+numpy
+pandas
+scipy
+matplotlib
+seaborn
+scikit-learn
+
+# Bioinformatics
+biopython
+biotite
+mdanalysis
+
+# Configuration and utilities
+pyyaml
+python-dotenv
+tqdm
+wandb
+gdown
+
+# Additional tools
+cpdb-protein
+torchmetrics
+einops
+ml_collections
+ipdb
+draw_rna
+arnie
+
+# Development and testing (optional)
+pytest
+jupyter
+jupyterlab
